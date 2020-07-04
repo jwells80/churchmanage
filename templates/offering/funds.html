@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h3>Fund</h3>
+    {% for fund in funds %}
+        <p>{{ fund.fund }}</p>
+    {% endfor %}
+    <a href="{%  url 'addfund' %}" class="btn btn-primary">Add new fund</a>
+{% endblock %}

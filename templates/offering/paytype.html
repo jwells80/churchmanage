@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h3>Mode</h3>
+    {% for paytype in paytypes %}
+        <p>{{ paytype.payment_mode }}</p>
+    {% endfor %}
+
+    <a href="{%  url 'addpaytype' %}" class="btn btn-primary">Add new payment type</a>
+{% endblock %}

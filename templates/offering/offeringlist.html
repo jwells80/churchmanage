@@ -1,0 +1,24 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+    <table class="table">
+        <tr>
+            <th>Member</th>
+            <th>Amount</th>
+            <th>Type</th>
+            <th>Fund</th>
+            <th>Date</th>
+        </tr>
+        {% for gift in gifts %}
+            <tr>
+                <td>{{ gift.member_id }}</td>
+                <td>{{ gift.amount }}</td>
+                <td>{{ gift.mode_id }}</td>
+                <td>{{ gift.fund_id }}</td>
+                <td>{{ gift.date }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+{%  endblock %}

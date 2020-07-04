@@ -1,0 +1,51 @@
+{% extends "loginout_base.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p>Please login to see this page.</p>
+    {% endif %}
+{% endif %}
+
+<form class="form-signin" method="post" action="{% url 'login' %}">
+{% csrf_token %}
+    <i class="fas fa-place-of-worship"></i>
+  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    {{ form.username.label_tag }}
+    {{ form.username }}
+
+    {{ form.password.label_tag }}
+    {{ form.password }}
+
+<div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" value="remember-me"> Remember me
+    </label>
+</div>
+<input class="btn btn-lg btn-primary btn-block"  type="submit" value="login">
+<input type="hidden" name="next" value="{{ next }}">
+</form>
+
+{# Assumes you setup the password_reset view in your URLconf #}
+<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+
+{% endblock %}
+
+{% comment %}
+    <form class="form-signin">
+  <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+  <label for="inputEmail" class="sr-only">Email address</label>
+  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>{% endcomment %}
