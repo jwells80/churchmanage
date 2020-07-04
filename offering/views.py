@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import offering, fund, paymenttype
 from django.contrib.auth.decorators import login_required
-from .forms import paymenttypeForm
+from .forms import paymenttypeForm, fundForm
 
 @login_required
 def home(request):
@@ -34,4 +34,10 @@ def addpaytype(request):
     return render(request, 'offering/addpaytype.html', {'title': 'Add Pay Type', 'form': form})
 
 def addfund(request):
-    return render(request, 'offering/addfund.html', {'title': 'Add Fund'})
+    if request.method == 'POST':
+        form = fundForm(request.POST)
+        if form.is_valid():
+            return redirect('offering/mode')
+    else:
+        form = fundForm()
+    return render(request, 'offering/addfund.html', {'title': 'Add Fund', 'form': form})

@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    Add Fund
+    {% load crispy_forms_tags %}
+    <form action="{% url 'addfund' %}" method="post" class="bootstrap4">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" value="Submit" class="btn btn-primary">
+    </form>
 {% endblock %}
