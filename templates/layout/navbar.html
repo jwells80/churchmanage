@@ -1,3 +1,4 @@
+{% load menu_generator %}
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-md-5 col-lg-4 mr-0 px-3" href="#"><i class="fas fa-place-of-worship"></i>&nbsp; Agape Church Management</a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,16 +13,26 @@
 </nav>
 <div class="container-fluid">
   <div class="row">
+      {% get_menu "NAV_MENU_LEFT" as left_menu %}
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="sidebar-sticky pt-3">
         <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">
-              <span data-feather="home"></span>
-              Dashboard <span class="sr-only">(current)</span>
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">
+              <span data-feather="file"></span>
+              Dashboard
             </a>
           </li>
-          <li class="nav-item">
+            {% for item in left_menu %}
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ item.url }}">
+                      <span data-feather="home"></span>
+                        {{ item.name }}<span class="sr-only">(current)</span>
+                    </a>
+                  </li>
+            {% endfor %}
+
+          {% comment %}<li class="nav-item">
             <a class="nav-link" href="#">
               <span data-feather="file"></span>
               Orders
@@ -83,7 +94,7 @@
               <span data-feather="file-text"></span>
               Year-end sale
             </a>
-          </li>
+          </li>{% endcomment %}
         </ul>
       </div>
     </nav>

@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from members.menus import MENUS
+from offering.menus import MENUS
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -35,6 +37,7 @@ INSTALLED_APPS = [
     'members.apps.MembersConfig',
     'bootstrap_admin',
     'crispy_forms',
+    'menu_generator',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -135,3 +138,5 @@ LOGIN_REDIRECT_URL = '/offering/home/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+MENU = MENUS

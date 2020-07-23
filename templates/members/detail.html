@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+        {% load crispy_forms_tags %}
+    <form action="{% url 'memberdetail' member.id %}" method="post" class="bootstrap4">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" value="Submit" class="btn btn-primary">
+    </form>
+{% endblock %}

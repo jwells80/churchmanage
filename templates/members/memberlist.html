@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<table class="table">
+    <tr>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Spouse</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>St</th>
+        <th>Zip</th>
+        <th>Actions</th>
+    </tr>
+    {% for member in allmembers %}
+        <tr>
+            <td>{{ member.first_name }}</td>
+            <td>{{ member.last_name }}</td>
+            <td>{{ member.spouse }}</td>
+            <td>{{ member.address }}</td>
+            <td>{{ member.city }}</td>
+            <td>{{ member.state }}</td>
+            <td>{{ member.zip }}</td>
+            <td>
+                <a href="{% url 'memberdetail' member.id %}" class="btn btn-primary btn-sm">Edit</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+    <a href="{% url 'addmember'  %}" class="btn btn-primary">Add Member</a>
+{% endblock %}
